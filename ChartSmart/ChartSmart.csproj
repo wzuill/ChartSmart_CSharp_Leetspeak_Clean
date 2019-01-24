@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChartData.cs" />
     <Compile Include="ChartSingleCompareOrig.cs">
       <SubType>Form</SubType>
     </Compile>
