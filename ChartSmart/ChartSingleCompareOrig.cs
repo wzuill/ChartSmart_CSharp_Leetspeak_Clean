@@ -54,14 +54,10 @@ namespace ChartSmart
         private void DrawChart()
         {
             var g = GetGraphics();
-
             RenderChartBackground(g);
-
             ChartData chartData; 
             chartData = GetChartData();
-
             RenderChart(g, chartData);
-    
             InvalidateIfNecessary(g, chartData);
         }
 
@@ -179,35 +175,52 @@ namespace ChartSmart
 
         private void RenderChartBackground(Graphics g)
         {
-            SolidBrush brush;
             if (_chartType == CHART_TYPE_BAR)
             {
-                if (_displayType == DISPLAY_TYPE_LARGE)
-                {
-                    brush = new SolidBrush(Color.Red);
-
-                    g.FillRectangle(brush, 20, 30, 300, 300);
-                }
-                else
-                {
-                    brush = new SolidBrush(Color.Red);
-
-
-                    g.FillRectangle(brush, 20, 30, 150, 150);
-                }
+                RenderBarChartBackground(g);
             }
             else
             {
-                if (_displayType != DISPLAY_TYPE_LARGE)
-                {
-                    brush = new SolidBrush(Color.Blue);
-                    g.FillEllipse(brush, 20, 30, 160, 160);
-                }
-                else
-                {
-                    brush = new SolidBrush(Color.Blue);
-                    g.FillEllipse(brush, 20, 30, 320, 320);
-                }
+                RenderPieChartBackground(g);
+            }
+
+            
+        }
+
+        private void RenderPieChartBackground(Graphics g)
+        {
+            SolidBrush brush;
+
+            if (_displayType != DISPLAY_TYPE_LARGE)
+            {
+                brush = new SolidBrush(Color.Blue);
+                g.FillEllipse(brush, 20, 30, 160, 160);
+            }
+            else
+            {
+                brush = new SolidBrush(Color.Blue);
+                g.FillEllipse(brush, 20, 30, 320, 320);
+            }
+
+            brush.Dispose();
+        }
+
+        private void RenderBarChartBackground(Graphics g)
+        {
+            SolidBrush brush;
+
+            if (_displayType == DISPLAY_TYPE_LARGE)
+            {
+                brush = new SolidBrush(Color.Red);
+
+                g.FillRectangle(brush, 20, 30, 300, 300);
+            }
+            else
+            {
+                brush = new SolidBrush(Color.Red);
+
+
+                g.FillRectangle(brush, 20, 30, 150, 150);
             }
 
             brush.Dispose();
