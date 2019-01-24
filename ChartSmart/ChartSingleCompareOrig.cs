@@ -148,26 +148,44 @@ namespace ChartSmart
         private ChartData GetChartData()
         {
             ChartData chartData;
-            chartData = new ChartData();
+            
             if (_chartType == CHART_TYPE_BAR)
             {
-                if (_displayType == DISPLAY_TYPE_LARGE)
-                    chartData.data = "Bar Data\nLarge";
-                else
-                {
-                    chartData.data = "Bar Data\nSmall";
-                }
+                chartData = GetBarChartData();
             }
             else
             {
-                if (_displayType == DISPLAY_TYPE_LARGE)
-                {
-                    chartData.otherData = "Pie Data\nLarge";
-                }
-                else
-                {
-                    chartData.someOtherDataObject = "Pie Data\nSmall";
-                }
+                chartData = GetPieChartData();
+            }
+
+            return chartData;
+        }
+
+        private ChartData GetPieChartData()
+        {
+            ChartData chartData;
+            chartData = new ChartData();
+            if (_displayType == DISPLAY_TYPE_LARGE)
+            {
+                chartData.otherData = "Pie Data\nLarge";
+            }
+            else
+            {
+                chartData.someOtherDataObject = "Pie Data\nSmall";
+            }
+
+            return chartData;
+        }
+
+        private ChartData GetBarChartData()
+        {
+            ChartData chartData;
+            chartData = new ChartData();
+            if (_displayType == DISPLAY_TYPE_LARGE)
+                chartData.data = "Bar Data\nLarge";
+            else
+            {
+                chartData.data = "Bar Data\nSmall";
             }
 
             return chartData;
@@ -183,8 +201,6 @@ namespace ChartSmart
             {
                 RenderPieChartBackground(g);
             }
-
-            
         }
 
         private void RenderPieChartBackground(Graphics g)
